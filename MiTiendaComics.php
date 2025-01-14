@@ -44,7 +44,7 @@ function mostrarComicsEnTabla()
 
     echo '</table>';
 }
-
+//hello
 function mostrarValorAlmacen()
 {
     // pending
