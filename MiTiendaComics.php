@@ -1,11 +1,14 @@
 <?php
 // Definición del inventario de cómics
 $inventario = [
-    'suspense_terror' => [
+
+    'suspense_terror' => 
+    [
         ['titulo' => 'The Long Halloween', 'editorial' => 'DC', 'autor' => 'Tim Sale', 'idioma' => 'Inglés', 'precio' => 20, 'stock' => 10],
         ['titulo' => 'Uzumaki', 'editorial' => 'Planeta', 'autor' => 'Junji Ito', 'idioma' => 'Japonés', 'precio' => 25, 'stock' => 15],
         ['titulo' => 'Tomie', 'editorial' => 'Planeta', 'autor' => 'Junji Ito', 'idioma' => 'Japonés', 'precio' => 25, 'stock' => 20],
     ],
+
     'accion' => [
         ['titulo' => 'Berserk Deluxe Edition 1', 'editorial' => 'Dark Horse', 'autor' => 'Kentaro Miura', 'idioma' => 'Japonés', 'precio' => 30, 'stock' => 12],
     ],
@@ -45,20 +48,36 @@ function mostrarComicsEnTabla()
     echo '</table>';
 }
 //hello
+//futf
 function mostrarValorAlmacen()
 {
-    // pending
+    global $inventario;
+
+    foreach($inventario as $categoria => $comics){
+        foreach($comics as $comic){
+            $cal = $comic['precio'] * $comic['stock'];
+            $valorTotal += $cal;
+
+        }
+        
+    }
+    echo "Total valor almacen es: $valorTotal";
+ 
 }
 
 function aplicarDescuentoManga()
 {
     global $inventario;
 
-    foreach ($inventario['accion'] as &$comic) {
-        if ($comic['idioma'] == 'Japonés') {
-            $comic['precio'] = $comic['precio'] * 0.7; // Aplicar descuento del 30%
-        }
+    foreach($inventario as $categoria => &$comics){
+        foreach($comics as &$comic){
+         if ($comic['idioma'] == 'Japonés') {
+             $comic['precio'] = $comic['precio'] * 0.7; // Aplicar descuento del 30%
+ 
+         }
+       }
     }
+
 }
 ?>
 
